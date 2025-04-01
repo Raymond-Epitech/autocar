@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ground - road and grass
     const roadWidth = 10;
     const roadLength = 100;
-    const grassWidth = 50;
+    const grassWidth = 150;
+    const grassHeight = 10
     
     // Road
     const roadGeometry = new THREE.PlaneGeometry(roadWidth, roadLength);
@@ -46,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     scene.add(road);
     
     // Grass
-    const grassGeometry = new THREE.PlaneGeometry(grassWidth, roadLength);
+    const grassGeometry = new THREE.BoxGeometry(grassWidth, roadLength, grassHeight);
     const grassMaterial = new THREE.MeshStandardMaterial({ color: 0x3a5f0b });
     const grassLeft = new THREE.Mesh(grassGeometry, grassMaterial);
     grassLeft.rotation.x = -Math.PI / 2;
