@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.scene = scene;
             this.container = new THREE.Group();
             this.speed = 0;
-            this.maxSpeed = 0.5;
+            this.maxSpeed = 2.5;
             this.rotationSpeed = 0.05;
             this.sensorData = {
                 front: 0,
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Raycast for each sensor
             const raycaster = new THREE.Raycaster();
-            const maxDistance = 10;
+            const maxDistance = 30;
             
             // Front sensor
             raycaster.set(origin, frontDirection);
@@ -219,16 +219,16 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Turn away from obstacles
             if (frontLeft < frontRight && frontLeft < 4) {
-                this.container.rotation.y += this.rotationSpeed * (1 - frontLeft / 4);
+                this.container.rotation.y -= this.rotationSpeed * (1 - frontLeft / 4);
             } else if (frontRight < frontLeft && frontRight < 4) {
-                this.container.rotation.y -= this.rotationSpeed * (1 - frontRight / 4);
+                this.container.rotation.y += this.rotationSpeed * (1 - frontRight / 4);
             }
             
             // Avoid walls
             if (left < 3) {
-                this.container.rotation.y -= this.rotationSpeed * (1 - left / 3);
+                this.container.rotation.y += this.rotationSpeed * (1 - left / 3);
             } else if (right < 3) {
-                this.container.rotation.y += this.rotationSpeed * (1 - right / 3);
+                this.container.rotation.y -= this.rotationSpeed * (1 - right / 3);
             }
         }
         
